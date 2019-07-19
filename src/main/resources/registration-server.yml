@@ -6,10 +6,14 @@ spring.autoconfigure.exclude: org.springframework.boot.autoconfigure.jdbc.DataSo
 # Configure this Discovery Server
 eureka:
   instance:
-    hostname: localhost
+    hostname: ${eureka.host}
   client:  # Not a client, don't register with yourself
     registerWithEureka: false
     fetchRegistry: false
+  server:
+    maxThreadsForPeerReplication: 0
+  service-url:
+    defaultZone: ${eureka.url}
 
 server:
   port: 1111   # HTTP (Tomcat) port
@@ -20,3 +24,4 @@ spring:
     enabled: false     # Disable Thymeleaf 
   datasource:
     type: org.springframework.jdbc.datasource.SimpleDriverDataSource
+
