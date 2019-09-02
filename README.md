@@ -56,8 +56,6 @@ docker run  --network=container:eureka --env-file=env.var microservice-demo:v1 w
 2. Run the containers
 
 
-## How to test
-
 
 # microservices-demo
 
