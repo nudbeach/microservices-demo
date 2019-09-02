@@ -1,5 +1,7 @@
 @Echo Off
 
+Rem --
+
 Set JAVA_HOME=c:\Java\jdk1.8.0_202\
 Set OPT1=
 
