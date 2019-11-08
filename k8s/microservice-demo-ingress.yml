@@ -1,0 +1,27 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: microservice-demo
+spec:
+  rules:
+    - host: reg.c91f8ec313c5044228f9134a43dfa402f.ap-northeast-1.alicontainer.com
+      http:
+        paths:
+          - backend:
+              serviceName: microservice-demo
+              servicePort: 1111
+            path: /
+    - host: acnt.c91f8ec313c5044228f9134a43dfa402f.ap-northeast-1.alicontainer.com
+      http:
+        paths:
+          - backend:
+              serviceName: microservice-demo
+              servicePort: 2222
+            path: /
+    - host: web.c91f8ec313c5044228f9134a43dfa402f.ap-northeast-1.alicontainer.com
+      http:
+        paths:
+          - backend:
+              serviceName: microservice-demo
+              servicePort: 3333
+            path: /

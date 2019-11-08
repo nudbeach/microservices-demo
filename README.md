@@ -9,13 +9,15 @@
 - JDK 1.8.x
 - Maven
 
-## How to clone the repo
+## Quick start
+
+- Clone repo
 
 ````
 git clone https://github.com/nudbeach/microservices-demo.git 
 ````
 
-## How to build Spring Boot source code
+- Build Spring Boot source code
 
 to build source code  
  
@@ -23,15 +25,15 @@ to build source code
 mvn clean package
 ````
 
-Once build's done successfully you'll find microservices-demo-2.0.0.RELEASE.jar from target directory
+Once build's done successfully you'll find 'microservices-demo-2.0.0.RELEASE.jar' from target directory
 
-to run docker build 
+- Build container image 
 
 ````
-docker build -t microservice-demo:v1 .
+docker build -t microservice-demo:{tag} .
 ````
 
-## How to run
+## Running the app
 
 - Running services in Spring Boot procedure
 
@@ -53,25 +55,37 @@ docker run  -p 3333:3333 --network=host --env-file=env.var microservice-demo:v1 
 
 - Running remotely at ACK cluster
 
-````
-docker run  -p 1111:1111 -p 2222:2222 -p 3333:3333 --name=eureka --env-file=env.var microservice-demo:v1 registration
-docker run  --network=container:eureka --env-file=env.var microservice-demo:v1 accounts
-docker run  --network=container:eureka --env-file=env.var microservice-demo:v1 web
-````
+Create your ACK cluster first and publish the image and deploy to it
+
 
 ## Pushing container image to registry
 
+Create your registry first from Container Registry Console
+
+- Login to your registry
+
 ````
 docker login --username={user id} -p {registry password} {registry end point} 
+````
+
+- Tagging your container image
+
+````
 docker tag microservice-demo:v1 {registry end point}/{user id}/microservice-demo:v1-reg
 docker tag microservice-demo:v1 {registry end point}/{user id}/microservice-demo:v1-acnt
 docker tag microservice-demo:v1 {registry end point}/{user id}/microservice-demo:v1-web
+````
+
+- Publishing your container image
+
+````
 docker push {registry end point}/{user id}/microservice-demo:v1-reg
 docker push {registry end point}/{user id}/microservice-demo:v1-acnt
 docker push {registry end point}/{user id}/microservice-demo:v1-web
 ````
 
 For example
+
 ````
 docker tag d649569a912c registry-intl.ap-northeast-1.aliyuncs.com/krca001/microservice-demo:v1-reg
 docker tag d649569a912c registry-intl.ap-northeast-1.aliyuncs.com/krca001/microservice-demo:v1-acnt
