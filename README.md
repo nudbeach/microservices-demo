@@ -53,17 +53,32 @@ docker run  -p 3333:3333 --network=host --env-file=env.var microservice-demo:v1 
 
 - Running remotely at ACK cluster
 
-```
+````
 docker run  -p 1111:1111 -p 2222:2222 -p 3333:3333 --name=eureka --env-file=env.var microservice-demo:v1 registration
 docker run  --network=container:eureka --env-file=env.var microservice-demo:v1 accounts
 docker run  --network=container:eureka --env-file=env.var microservice-demo:v1 web
-```
+````
 
 ## Pushing container image to registry
 
-```
+````
 docker login --username={user id} -p {registry password} {registry end point} 
-docker tag microservice-demo:v1 {registry end point}/{user id}/microservice-demo:v1
-docker push {registry end point}/{user id}/microservice-demo:v1
-```
+docker tag microservice-demo:v1 {registry end point}/{user id}/microservice-demo:v1-reg
+docker tag microservice-demo:v1 {registry end point}/{user id}/microservice-demo:v1-acnt
+docker tag microservice-demo:v1 {registry end point}/{user id}/microservice-demo:v1-web
+docker push {registry end point}/{user id}/microservice-demo:v1-reg
+docker push {registry end point}/{user id}/microservice-demo:v1-acnt
+docker push {registry end point}/{user id}/microservice-demo:v1-web
+````
+
+For example
+````
+docker tag d649569a912c registry-intl.ap-northeast-1.aliyuncs.com/krca001/microservice-demo:v1-reg
+docker tag d649569a912c registry-intl.ap-northeast-1.aliyuncs.com/krca001/microservice-demo:v1-acnt
+docker tag d649569a912c registry-intl.ap-northeast-1.aliyuncs.com/krca001/microservice-demo:v1-web
+
+docker push registry-intl.ap-northeast-1.aliyuncs.com/krca001/microservice-demo:v1-reg
+docker push registry-intl.ap-northeast-1.aliyuncs.com/krca001/microservice-demo:v1-acnt
+docker push registry-intl.ap-northeast-1.aliyuncs.com/krca001/microservice-demo:v1-web
+````
 
