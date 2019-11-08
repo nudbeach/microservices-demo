@@ -7,7 +7,25 @@
 ## What's required to build
 
 - JDK 1.8.x
-- Maven (any)
+- Maven or Gradle
+
+## How to build Spring Boot source code
+
+to build source code  
+
+```
+mvn clean package
+````
+
+or 
+
+```
+gradle clean assemble
+````
+
+Once build's done successfully you're find microservices-demo-2.0.0.RELEASE.jar from target
+
+
 
 to run docker build 
 
