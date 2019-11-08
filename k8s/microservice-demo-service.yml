@@ -5,7 +5,7 @@ metadata:
     service.beta.kubernetes.io/alicloud-loadbalancer-address-type: intranet
     service.beta.kubernetes.io/alicloud-loadbalancer-force-override-listeners: 'true'
     service.beta.kubernetes.io/alicloud-loadbalancer-id: lb-0iwjl32f64akeu47ysty9
-  name: microservice-demo
+  name: microservice-demo-svc
 spec:
   externalTrafficPolicy: Local
   ports:
