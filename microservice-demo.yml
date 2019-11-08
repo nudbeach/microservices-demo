@@ -14,7 +14,7 @@ spec:
       labels:
         app: nginx
     spec:
-      containers:
+       containers:
         - args:
             - registration
           env:
@@ -27,9 +27,14 @@ spec:
             - name: EUREKA_URL
               value: 'http://192.168.228.76:1111/eureka/'
           image: >-
-            registry-intl-vpc.ap-northeast-1.aliyuncs.com/krca001/microservice-demo:v1-reg
+            registry-intl-vpc.ap-northeast-1.aliyuncs.com/krca001/microservice-demo:v2-reg
           imagePullPolicy: IfNotPresent
           name: microservice-demo-default-0
+          ports:
+            - containerPort: 1111
+              hostPort: 1111
+              name: p1111
+              protocol: TCP
           resources:
             requests:
               cpu: 250m
@@ -48,9 +53,14 @@ spec:
             - name: EUREKA_URL
               value: 'http://192.168.228.76:1111/eureka/'
           image: >-
-            registry-intl-vpc.ap-northeast-1.aliyuncs.com/krca001/microservice-demo:v1-acnt
+            registry-intl-vpc.ap-northeast-1.aliyuncs.com/krca001/microservice-demo:v2-acnt
           imagePullPolicy: IfNotPresent
           name: microservice-demo-default-1
+          ports:
+            - containerPort: 1111
+              hostPort: 2222
+              name: p2222
+              protocol: TCP
           resources: {}
           terminationMessagePath: /dev/termination-log
           terminationMessagePolicy: File
@@ -66,9 +76,14 @@ spec:
             - name: EUREKA_URL
               value: 'http://192.168.228.76:1111/eureka/'
           image: >-
-            registry-intl-vpc.ap-northeast-1.aliyuncs.com/krca001/microservice-demo:v1-web
+            registry-intl-vpc.ap-northeast-1.aliyuncs.com/krca001/microservice-demo:v2-web
           imagePullPolicy: IfNotPresent
           name: microservice-demo-default-2
+          ports:
+            - containerPort: 2222
+              hostPort: 3333
+              name: p3333
+              protocol: TCP
           resources: {}
           terminationMessagePath: /dev/termination-log
-          terminationMessagePolicy: File
+          terminationMessagePolicy: File 
