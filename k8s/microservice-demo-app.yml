@@ -27,7 +27,7 @@ spec:
             - name: EUREKA_URL
               value: 'http://192.168.228.76:1111/eureka/'
           image: >-
-            registry-intl-vpc.ap-northeast-1.aliyuncs.com/krca001/microservice-demo:v16
+            registry-intl-vpc.ap-northeast-1.aliyuncs.com/krca001/microservice-demo:v18
           imagePullPolicy: IfNotPresent
           name: microservice-demo-default-0
           ports:
@@ -53,7 +53,7 @@ spec:
             - name: EUREKA_URL
               value: 'http://192.168.228.76:1111/eureka/'
           image: >-
-            registry-intl-vpc.ap-northeast-1.aliyuncs.com/krca001/microservice-demo:v16
+            registry-intl-vpc.ap-northeast-1.aliyuncs.com/krca001/microservice-demo:v18
           imagePullPolicy: IfNotPresent
           name: microservice-demo-default-1
           ports:
@@ -79,7 +79,7 @@ spec:
             - name: EUREKA_URL
               value: 'http://192.168.228.76:1111/eureka/'
           image: >-
-            registry-intl-vpc.ap-northeast-1.aliyuncs.com/krca001/microservice-demo:v16
+            registry-intl-vpc.ap-northeast-1.aliyuncs.com/krca001/microservice-demo:v18
           imagePullPolicy: IfNotPresent
           name: microservice-demo-default-2
           ports:
