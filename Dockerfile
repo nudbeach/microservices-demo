@@ -1,4 +1,5 @@
 FROM openjdk:8-jdk-alpine
+
 VOLUME /tmp
 COPY target/microservices-demo-2.0.0.RELEASE.jar .
 
