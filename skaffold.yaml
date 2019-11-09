@@ -1,0 +1,20 @@
+apiVersion: skaffold/v1
+kind: Config
+metadata:
+  name: microservices-demo
+build:
+  artifacts:
+  - image: registry-intl-vpc.ap-northeast-1.aliyuncs.com/krca001/microservice-demo
+    context: .
+    sync:
+      infer:
+      - '.filebaserc'
+      - 'static-html/*.html'
+      - '**/*.png'
+      - 'content/en/**/*.md'  
+deploy:
+  kubectl:
+    manifests:
+    - k8s-local/microservice-demo-app.yml
+    - k8s-local/microservice-demo-service.yml
+#    - k8s-local/microservice-demo-ingress.yml
