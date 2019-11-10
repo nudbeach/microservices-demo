@@ -6,7 +6,7 @@ profiles:
 - name: local
   build:
     artifacts:
-    - image: microservice-demo
+    - image: registry-intl-vpc.ap-northeast-1.aliyuncs.com/krca001/microservice-demo
       context: .
       sync:
        manual:
@@ -23,7 +23,7 @@ profiles:
 - name: stage
   build:
     artifacts:
-    - image: microservice-demo
+    - image: registry-intl-vpc.ap-northeast-1.aliyuncs.com/krca001/microservice-demo
       context: .
     tagPolicy:
       dateTime:
