@@ -91,6 +91,34 @@
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
             </plugin>
+            
+	<plugin>
+		<artifactId>maven-resources-plugin</artifactId>
+		<version>3.1.0</version>
+		<executions>
+			<execution>
+				<id>stage</id>
+				<phase>package</phase>
+				<goals>
+					<goal>copy-resources</goal>
+				</goals>
+				
+				<configuration>
+					<outputDirectory>${basedir}/target/web-contents</outputDirectory>
+					<resources>          
+						<resource>
+							<directory>src/main/resources</directory>
+							<includes>
+								<include>**/templates/*</include>
+							</includes>							
+						</resource>
+					</resources>              
+				</configuration>            
+			</execution>
+		</executions>
+	</plugin>
+
         </plugins>
     </build>
+    
 </project>

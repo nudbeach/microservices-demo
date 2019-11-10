@@ -2,19 +2,32 @@ apiVersion: skaffold/v1
 kind: Config
 metadata:
   name: microservices-demo
-build:
-  artifacts:
-  - image: registry-intl-vpc.ap-northeast-1.aliyuncs.com/krca001/microservice-demo
-    context: .
-    sync:
-      infer:
-      - '.filebaserc'
-      - 'static-html/*.html'
-      - '**/*.png'
-      - 'content/en/**/*.md'  
-deploy:
-  kubectl:
-    manifests:
-    - k8s-local/microservice-demo-app.yml
-    - k8s-local/microservice-demo-service.yml
-#    - k8s-local/microservice-demo-ingress.yml
+profiles:
+- name: local
+  build:
+    artifacts:
+    - image: microservice-demo
+      context: .
+      sync:
+       manual:
+       - src: 'target/web-contents/**/*.html'
+         dest: /web-home
+         strip: 'target/web-contents/'
+    local: 
+      push: false
+  deploy:
+    kubectl:
+      manifests:
+      - deploy/local/microservice-demo-app.yml
+      - deploy/local/microservice-demo-service.yml
+- name: stage
+  build:
+    artifacts:
+    - image: microservice-demo
+      context: .
+    tagPolicy:
+      dateTime:
+        format: '2006-01-02_15-04-05.999_KST'
+        timezone: 'Local'
+    local: {}
+  deploy: {}

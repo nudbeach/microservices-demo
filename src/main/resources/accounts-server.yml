@@ -6,8 +6,10 @@ spring:
     enabled: false           # Ignore Eureka dashboard FreeMarker templates
   thymeleaf:
     cache: false             # Allow Thymeleaf templates to be reloaded at runtime
-    prefix: classpath:/accounts-server/templates/    # Trailing / mandatory
-                             # Template location for this application only
+#    prefix: classpath:/accounts-server/templates/    # Trailing / mandatory
+#                             # Template location for this application only
+    prefix: file://${web.home}/accounts-server/templates/
+    
 
 # Map the error path to error template (for Thymeleaf)
 error.path: /error
