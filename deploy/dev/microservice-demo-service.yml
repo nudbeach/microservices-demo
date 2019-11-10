@@ -1,0 +1,27 @@
+apiVersion: v1
+kind: Service
+metadata:
+  annotations:
+    service.beta.kubernetes.io/alicloud-loadbalancer-address-type: intranet
+    service.beta.kubernetes.io/alicloud-loadbalancer-force-override-listeners: 'true'
+    service.beta.kubernetes.io/alicloud-loadbalancer-id: lb-0iwjl32f64akeu47ysty9
+  name: microservice-demo-svc
+spec:
+  externalTrafficPolicy: Local
+  ports:
+    - name: 'p1111'
+      port: 1111
+      protocol: TCP
+      targetPort: 1111
+    - name: 'p2222'
+      port: 2222
+      protocol: TCP
+      targetPort: 2222
+    - name: 'p3333'
+      port: 3333
+      protocol: TCP
+      targetPort: 3333
+  selector:
+    app: microservice-demo-default
+  sessionAffinity: None
+  type: LoadBalancer

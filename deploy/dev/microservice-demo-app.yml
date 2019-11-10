@@ -1,0 +1,95 @@
+apiVersion: apps/v1beta2 # for versions before 1.8.0 use apps/v1beta1
+kind: Deployment
+metadata:
+  name: microservice-demo-default
+  labels:
+    app: microservice-demo-default
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: microservice-demo-default
+  template:
+    metadata:
+      labels:
+        app: microservice-demo-default
+    spec:
+       containers:
+        - args:
+            - registration
+          env:
+            - name: LANG
+              value: C.UTF-8
+            - name: JAVA_HOME
+              value: /usr/lib/jvm/java-1.8-openjdk
+            - name: EUREKA_HOST
+              value: localhost
+            - name: EUREKA_URL
+              value: 'http://localhost:1111/eureka/'
+          image: >-
+            registry-intl-vpc.ap-northeast-1.aliyuncs.com/krca001/microservice-demo:v16
+          imagePullPolicy: IfNotPresent
+          name: microservice-demo-default-0
+          ports:
+            - containerPort: 1111
+              hostPort: 1111
+              name: p1111
+              protocol: TCP
+          resources:
+            requests:
+              cpu: 250m
+              memory: 512Mi
+          terminationMessagePath: /dev/termination-log
+          terminationMessagePolicy: File
+        - args:
+            - accounts
+          env:
+            - name: LANG
+              value: C.UTF-8
+            - name: JAVA_HOME
+              value: /usr/lib/jvm/java-1.8-openjdk
+            - name: EUREKA_HOST
+              value: localhost
+            - name: EUREKA_URL
+              value: 'http://localhost:1111/eureka/'
+          image: >-
+            registry-intl-vpc.ap-northeast-1.aliyuncs.com/krca001/microservice-demo:v18
+          imagePullPolicy: IfNotPresent
+          name: microservice-demo-default-1
+          ports:
+            - containerPort: 2222
+              hostPort: 2222
+              name: p2222
+              protocol: TCP
+          resources:
+            requests:
+              cpu: 250m
+              memory: 512Mi
+          terminationMessagePath: /dev/termination-log
+          terminationMessagePolicy: File
+        - args:
+            - web
+          env:
+            - name: LANG
+              value: C.UTF-8
+            - name: JAVA_HOME
+              value: /usr/lib/jvm/java-1.8-openjdk
+            - name: EUREKA_HOST
+              value: localhost
+            - name: EUREKA_URL
+              value: 'http://localhost:1111/eureka/'
+          image: >-
+            registry-intl-vpc.ap-northeast-1.aliyuncs.com/krca001/microservice-demo:v20
+          imagePullPolicy: IfNotPresent
+          name: microservice-demo-default-2
+          ports:
+            - containerPort: 3333
+              hostPort: 3333
+              name: p3333
+              protocol: TCP
+          resources:
+            requests:
+              cpu: 250m
+              memory: 512Mi
+          terminationMessagePath: /dev/termination-log
+          terminationMessagePolicy: File 
