@@ -6,7 +6,7 @@
 
 <body>
 
-	<h1>Microservices Demo - Web Server v50</h1>
+	<h1>Microservices Demo - Web Server v00</h1>
 	<h3>Overview</h3>
 	<ul>
 		<li>Demo defines a simple web-application for accessing accounts
@@ -18,8 +18,8 @@
 	<h3>The Demo</h3>
 
 	<ul class="openlist">
-		<li>Eureka Dashboard: http://{your eureka.host}:1111</li>
-		<li>Check applications registered: http://{your eureka.host}:1111/eureka/apps/</li>
+		<li>Eureka Dashboard: http://${eureka.host}:1111</li>
+		<li>Check applications registered: http://${eureka.host}:1111/eureka/apps/</li>
 		<li>Fetch account #123456789: <a th:href="@{/accounts/123456789}">/accounts/123456789</a></li>
 
 		<li>Fetch by name: <a th:href="@{/accounts/owner/Keri}">/accounts/owner/Keri</a></li>
